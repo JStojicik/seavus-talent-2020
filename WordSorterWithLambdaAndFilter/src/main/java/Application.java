@@ -14,7 +14,7 @@ public class Application {
 
     public static void main(String[] args) throws IOException {
         File file = new File("src/file.txt");
-        String fileString = FileUtils.readFileToString(file, "UTF-8").toLowerCase().replaceAll(",", "").replaceAll("[.]", "");
+        String fileString = FileUtils.readFileToString(file, "UTF-8").toLowerCase().replaceAll("[^a-zA-Z ]", "");
         ArrayList<String> stringList = new ArrayList<>(Arrays.asList(fileString.split(" ")));
         Scanner sc = new Scanner(System.in);
         System.out.println("choose the sorting you like for the list of words contained in the file file.txt\n(desc)for descending\n(asc)for ascending");
@@ -27,7 +27,7 @@ public class Application {
             if (sortType.toLowerCase().equals(ASCENDING)) {
                 stringList.stream().sorted(Comparator.comparingInt(String::length)).filter(s -> maxLength > 0 ? (s.length() <= maxLength && s.length() >= minLength) : s.length() >= minLength).distinct().forEach(System.out::println);
             } else if (sortType.toLowerCase().equals(DESCENDING)) {
-                stringList.stream().sorted((s1, s2) -> s2.length() - s1.length()).filter(s -> s.length() <= maxLength && s.length() >= minLength).distinct().forEach(System.out::println);
+                stringList.stream().sorted((s1, s2) -> s2.length() - s1.length()).filter(s -> maxLength > 0 ? (s.length() <= maxLength && s.length() >= minLength) : s.length() >= maxLength).distinct().forEach(System.out::println);
             } else {
                 System.out.println("invalid sort type");
             }
