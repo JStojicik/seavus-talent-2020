@@ -11,19 +11,19 @@ public class Application {
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        File directory = new File("src\\files");
+        File directory = new File("files");
 
         System.out.println("Enter the type of archive you want to create for the folder 'files' in /src\n(7z) for 7zip\n(zip) for zip");
         String archiveType = sc.nextLine();
         switch (archiveType) {
             case SEVENZIP:
-                File archive = new File("src\\archive.7z");
+                File archive = new File("archive.7z");
                 SevenZipArchiverImpl sevenZipArchiver = new SevenZipArchiverImpl();
                 sevenZipArchiver.archive(directory, archive);
                 System.out.println("7zip Archive created in " + archive.getAbsolutePath());
                 break;
             case ZIP:
-                archive = new File("src\\archive.zip");
+                archive = new File("archive.zip");
                 ZipArchiverImpl ZipArchiver = new ZipArchiverImpl();
                 ZipArchiver.archive(directory, archive);
                 System.out.println("zip Archive created in " + archive.getAbsolutePath());
