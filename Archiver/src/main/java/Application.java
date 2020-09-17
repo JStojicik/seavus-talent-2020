@@ -31,16 +31,5 @@ public class Application {
             default:
                 System.out.println("no such archive type");
         }
-//        if (archiveType.toLowerCase().equals(SEVENZIP)) {
-//            File archive = new File("C:\\Users\\Jovica\\IdeaProjects\\seavus-talent-2020\\Archiver\\src\\main\\java\\7zip\\archive");
-//            SevenZipArchiverImpl sevenZipArchiver = new SevenZipArchiverImpl();
-//            sevenZipArchiver.archive(directory, archive);
-//        } else if (archiveType.toLowerCase().equals(ZIP)) {
-//            File archive = new File("C:\\Users\\Jovica\\IdeaProjects\\seavus-talent-2020\\Archiver\\src\\main\\java\\zip\\archive");
-//            SevenZipArchiverImpl sevenZipArchiver = new SevenZipArchiverImpl();
-//            sevenZipArchiver.archive(directory, archive);
-//        } else {
-//            System.out.println("No such archive type");
-//        }
     }
 }
