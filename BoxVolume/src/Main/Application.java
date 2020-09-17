@@ -14,6 +14,5 @@ public class Application {
         double depth = sc.nextDouble();
         Box box = new Box(height, width, depth);
         System.out.println("You have entered a " + box.toString());
-
     }
 }
