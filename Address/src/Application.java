@@ -1,10 +1,10 @@
 import exceptions.InvalidZipCodeException;
-import utility.Util;
+import model.Address;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            Util.createAddress();
+            Address.createAddress();
         } catch (NumberFormatException nfe) {
             System.out.println("invalid number");
             nfe.printStackTrace();
