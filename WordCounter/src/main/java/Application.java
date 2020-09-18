@@ -12,16 +12,16 @@ public class Application {
         File file = new File("src/file.txt");
         String fileString = FileUtils.readFileToString(file, "UTF-8").toLowerCase().replaceAll("[^a-zA-Z ]", "");
         ArrayList<String> stringList = new ArrayList<>(Arrays.asList(fileString.split(" ")));
-        LinkedHashSet<String> stringsCountedList = new LinkedHashSet<>();
+        LinkedHashSet<String> stringsCountedSet = new LinkedHashSet<>();
         for (String s : stringList) {
             for (String s1 : stringList) {
                 if (s.equals(s1)) {
                     count++;
                 }
             }
-            stringsCountedList.add("<" + s + ">" + " : " + "<" + count + ">");
+            stringsCountedSet.add("<" + s + ">" + " : " + "<" + count + ">");
             count = 0;
         }
-        stringsCountedList.forEach(System.out::println);
+        stringsCountedSet.forEach(System.out::println);
     }
 }
