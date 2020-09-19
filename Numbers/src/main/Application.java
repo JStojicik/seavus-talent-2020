@@ -14,16 +14,36 @@ public class Application {
         StringBuilder number = new StringBuilder();
         for (String s : numberString.split(" ")) {
             switch (s.toLowerCase()) {
-                case "one" -> number.append("1");
-                case "two" -> number.append("2");
-                case "three" -> number.append("3");
-                case "four" -> number.append("4");
-                case "five" -> number.append("5");
-                case "six" -> number.append("6");
-                case "seven" -> number.append("7");
-                case "eight" -> number.append("8");
-                case "nine" -> number.append("9");
-                case "zero" -> number.append("0");
+                case "one":
+                    number.append("1");
+                    break;
+                case "two":
+                    number.append("2");
+                    break;
+                case "three":
+                    number.append("3");
+                    break;
+                case "four":
+                    number.append("4");
+                    break;
+                case "five":
+                    number.append("5");
+                    break;
+                case "six":
+                    number.append("6");
+                    break;
+                case "seven":
+                    number.append("7");
+                    break;
+                case "eight":
+                    number.append("8");
+                    break;
+                case "nine":
+                    number.append("9");
+                    break;
+                case "zero":
+                    number.append("0");
+                    break;
             }
         }
         return number.toString();
