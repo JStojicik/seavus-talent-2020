@@ -2,8 +2,6 @@ package model;
 
 import exceptions.InvalidZipCodeException;
 
-import java.util.Scanner;
-
 public class Address {
     private String street;
     private Integer streetNumber;
@@ -14,26 +12,15 @@ public class Address {
         this.street = street;
         this.streetNumber = streetNumber;
         this.city = city;
-        this.zipCode = zipCode;
+        this.zipCode = checkZipIfValid(zipCode);
     }
 
-    public static void createAddress() throws NumberFormatException, InvalidZipCodeException {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("enter a street name");
-        String street = sc.nextLine();
-        System.out.println("enter a street number");
-        Integer streetNumber = Integer.parseInt(sc.nextLine());
-        System.out.println("enter a city name");
-        String city = sc.nextLine();
-        System.out.println("enter the zip code");
-        Integer zipCode = Integer.parseInt(sc.nextLine());
+    private static Integer checkZipIfValid(Integer zipCode) throws InvalidZipCodeException {
         if ((zipCode > 99999 || zipCode < 10000) && (zipCode > 999999999 || zipCode < 100000000)) {
             throw new InvalidZipCodeException("invalid zip code");
+        } else {
+            return zipCode;
         }
-        Address address = new Address(street, streetNumber, city, zipCode);
-        System.out.println(address);
     }
 
     public String getStreet() {
