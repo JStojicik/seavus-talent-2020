@@ -1,23 +1,22 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Application {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a sentence");
-        String text = sc.nextLine();
+        String text = sc.nextLine().toLowerCase();
         System.out.println("The characters printed with the number of apearences in the sentance you entered");
-        charCounter(text.toLowerCase()).forEach(System.out::println);
+        for (Map.Entry<Character, Integer> entry : charCounter(text).entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
     }
 
-    static Set<String> charCounter(String text) {
+    static Map<Character,Integer> charCounter(String text) {
         ArrayList<Character> charList = new ArrayList<>();
-        LinkedHashSet<String> countedCharList = new LinkedHashSet<>();
+        HashMap<Character,Integer> countedCharMap = new HashMap<>();
         for (int i = 0; i < text.length(); i++) {
             charList.add(text.charAt(i));
         }
@@ -28,9 +27,8 @@ public class Application {
                     count++;
                 }
             }
-            countedCharList.add(c + " : " + count);
-
+            countedCharMap.put(c,count);
         }
-        return countedCharList;
+        return countedCharMap;
     }
 }
