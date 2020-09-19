@@ -4,13 +4,11 @@ public class Box {
     private double height;
     private double width;
     private double depth;
-    private double volume;
 
     public Box(double height, double width, double depth) {
         this.height = height;
         this.width = width;
         this.depth = depth;
-        volume=calcVolume();
     }
 
     public double getHeight() {
@@ -19,7 +17,6 @@ public class Box {
 
     public void setHeight(double height) {
         this.height = height;
-        volume=calcVolume();
     }
 
     public double getWidth() {
@@ -28,7 +25,6 @@ public class Box {
 
     public void setWidth(double width) {
         this.width = width;
-        volume=calcVolume();
     }
 
     public double getDepth() {
@@ -37,15 +33,10 @@ public class Box {
 
     public void setDepth(double depth) {
         this.depth = depth;
-        volume=calcVolume();
     }
 
-    public double getVolume() {
-        return volume;
-    }
-
-    private double calcVolume() {
-        return height*depth*width;
+    public double calcVolume() {
+        return height * depth * width;
     }
 
     @Override
@@ -53,7 +44,6 @@ public class Box {
         return "Box with dimensions: " +
                 "height=" + height +
                 ", width=" + width +
-                ", depth=" + depth +
-                " with volume of "+volume;
+                ", depth=" + depth;
     }
 }

@@ -13,6 +13,6 @@ public class Application {
         System.out.println("Enter depth");
         double depth = sc.nextDouble();
         Box box = new Box(height, width, depth);
-        System.out.println("You have entered a " + box.toString());
+        System.out.println("You have entered a " + box.toString()+"with volume of "+box.calcVolume());
     }
 }
