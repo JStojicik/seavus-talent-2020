@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) throws IOException {
@@ -12,7 +13,7 @@ public class Application {
         File file = new File("src/file.txt");
         String fileString = FileUtils.readFileToString(file, "UTF-8").toLowerCase().replaceAll("[^a-zA-Z ]", "");
         ArrayList<String> stringList = new ArrayList<>(Arrays.asList(fileString.split(" ")));
-        LinkedHashSet<String> stringsCountedSet = new LinkedHashSet<>();
+        LinkedHashMap<String, Integer> stringsCountedMap = new LinkedHashMap<>();
         for (String s : stringList) {
             int count = 0;
             for (String s1 : stringList) {
@@ -20,8 +21,11 @@ public class Application {
                     count++;
                 }
             }
-            stringsCountedSet.add("<" + s + ">" + " : " + "<" + count + ">");
+            stringsCountedMap.put(s, count);
         }
-        stringsCountedSet.forEach(System.out::println);
+        System.out.println("Each word and the number of times it has been used in the text file will be printed");
+        for (Map.Entry<String, Integer> entry : stringsCountedMap.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
     }
 }
