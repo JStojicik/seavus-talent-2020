@@ -1,8 +1,9 @@
 package com.example.notes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Note {
@@ -11,13 +12,27 @@ public class Note {
     private Long id;
     private String title;
     private String content;
+    @ManyToOne
+    private User user;
+    @ManyToMany
+    private List<Tag> tags;
 
-    public Note(String title, String content) {
+    public Note(String title, String content, User user) {
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
     public Note() {
+    }
+
+    @JsonIgnore
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -38,6 +53,14 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override

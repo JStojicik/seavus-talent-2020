@@ -21,7 +21,7 @@ public class NoteController {
 
     @PostMapping("/notes")
     public void createNote(@RequestBody CreateNoteRequest request) {
-        noteService.createNote(request.title, request.content);
+        noteService.createNote(request.title, request.content, request.userId);
     }
 
     @GetMapping("/notes/{id}")
@@ -30,8 +30,13 @@ public class NoteController {
     }
 
     @GetMapping({"/notes", "/notes/"})
-    public List<Note> findNotes() {
+    public List<Note> findAllNotes() { //getAllNotes
         return noteService.findNotes();
+    }
+
+    @GetMapping("/notes/tags/{id}")
+    public List<Note> findNotesByTagId(@PathVariable Long id) {
+        return noteService.findNotesByTagId(id);
     }
 
     @PutMapping("/notes/{id}")
@@ -47,5 +52,6 @@ public class NoteController {
     public static class CreateNoteRequest {
         public String title;
         public String content;
+        public Long userId;
     }
 }
