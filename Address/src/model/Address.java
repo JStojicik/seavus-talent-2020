@@ -52,7 +52,7 @@ public class Address {
     }
 
     public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
+        this.zipCode = checkZipIfValid(zipCode);
     }
 
     @Override
