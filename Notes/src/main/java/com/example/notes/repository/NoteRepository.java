@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
     List<Note> findNotesByTagsId(Long id);
+
+    List<Note> findNotesByUserId(Long id);
 }

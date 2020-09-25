@@ -4,9 +4,7 @@ import com.example.notes.model.Tag;
 import com.example.notes.model.User;
 import com.example.notes.repository.TagRepository;
 import com.example.notes.repository.UserRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,18 +19,19 @@ public class TagService {
         this.userRepository = userRepository;
     }
 
-    public void createTag(String name, Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public Tag createTag(String name, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         Tag tag = new Tag(name, user);
         tagRepository.save(tag);
+        return tag;
     }
 
     public Optional<Tag> findTag(Long id) {
         return tagRepository.findById(id);
     }
 
-    public List<Tag> findTags() {
-        return tagRepository.findAll();
+    public List<Tag> findTags(Long userId) {
+        return tagRepository.findTagsByUserId(userId);
     }
 
     public void deleteTag(Long id) {

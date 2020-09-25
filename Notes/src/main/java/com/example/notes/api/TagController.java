@@ -1,6 +1,7 @@
 package com.example.notes.api;
 
 import com.example.notes.model.Tag;
+import com.example.notes.security.SecurityService;
 import com.example.notes.service.TagService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,36 +10,38 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tags")
 public class TagController {
     private final TagService tagService;
+    private final SecurityService securityService;
 
-    public TagController(TagService tagService) {
+    public TagController(TagService tagService, SecurityService securityService) {
         this.tagService = tagService;
+        this.securityService = securityService;
     }
 
-    @PostMapping("/tags")
-    public void createTag(@RequestBody TagController.CreateTagRequest request) {
-        tagService.createTag(request.name, request.userId);
+    @PostMapping
+    public Tag createTag(@RequestBody CreateTagRequest request) {
+        return tagService.createTag(request.name, securityService.getAuthenticatedCustomer().getId());
     }
 
-    @GetMapping({"/tags", "/tags/"})
-    public List<Tag> findAllTags() {
-        return tagService.findTags();
+    @GetMapping({"", "/"})
+    public List<Tag> findTagsByUserId() {
+        return tagService.findTags(securityService.getAuthenticatedCustomer().getId());
     }
 
-    @GetMapping("/tags/{id}")
+    @GetMapping("/{id}")
     public Tag findTagById(@PathVariable Long id) {
         return tagService.findTag(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/tags/{id}")
+    @DeleteMapping("/{id}")
     public void deleteTag(@PathVariable Long id) {
         tagService.deleteTag(id);
     }
 
     static class CreateTagRequest {
         public String name;
-        public Long userId;
     }
+
 }
