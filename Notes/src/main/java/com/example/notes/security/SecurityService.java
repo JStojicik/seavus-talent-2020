@@ -16,7 +16,7 @@ public class SecurityService {
         this.userRepository = userRepository;
     }
 
-    public User getAuthenticatedCustomer() {
+    public User getAuthenticatedUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findByUsername(userDetails.getUsername()).get();
     }

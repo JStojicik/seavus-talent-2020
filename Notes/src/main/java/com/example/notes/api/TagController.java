@@ -22,12 +22,12 @@ public class TagController {
 
     @PostMapping
     public Tag createTag(@RequestBody CreateTagRequest request) {
-        return tagService.createTag(request.name, securityService.getAuthenticatedCustomer().getId());
+        return tagService.createTag(request.name, securityService.getAuthenticatedUser().getId());
     }
 
     @GetMapping({"", "/"})
     public List<Tag> findTagsByUserId() {
-        return tagService.findTags(securityService.getAuthenticatedCustomer().getId());
+        return tagService.findTags(securityService.getAuthenticatedUser().getId());
     }
 
     @GetMapping("/{id}")

@@ -25,7 +25,7 @@ public class NoteController {
 
     @PostMapping
     public Note createNote(@RequestBody CreateNoteRequest request) {
-        return noteService.createNote(request.title, request.content, request.tagIds, securityService.getAuthenticatedCustomer().getId());
+        return noteService.createNote(request.title, request.content, request.tagIds, securityService.getAuthenticatedUser().getId());
     }
 
     @GetMapping("/{id}")
@@ -35,7 +35,7 @@ public class NoteController {
 
     @GetMapping({"", "/"})
     public List<Note> findNotesByUserId() { //getAllNotes
-        return noteService.findNotesByUserId(securityService.getAuthenticatedCustomer().getId());
+        return noteService.findNotesByUserId(securityService.getAuthenticatedUser().getId());
     }
 
     @GetMapping("/tags/{id}")
