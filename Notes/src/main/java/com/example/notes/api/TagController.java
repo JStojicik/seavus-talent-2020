@@ -25,6 +25,11 @@ public class TagController {
         return tagService.createTag(request.name, securityService.getAuthenticatedUser().getId());
     }
 
+    @PutMapping("/{tagId}")
+    public Tag updateTag(@PathVariable Long tagId,@RequestBody CreateTagRequest request){
+        return tagService.updateTag(request.name,tagId);
+    }
+
     @GetMapping({"", "/"})
     public List<Tag> findTagsByUserId() {
         return tagService.findTags(securityService.getAuthenticatedUser().getId());

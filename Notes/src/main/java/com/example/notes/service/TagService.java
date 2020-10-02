@@ -26,6 +26,13 @@ public class TagService {
         return tag;
     }
 
+    public Tag updateTag(String name, Long tagId){
+        Tag tag= tagRepository.findById(tagId).orElseThrow(IllegalArgumentException::new);
+        tag.setName(name);
+        tagRepository.save(tag);
+        return tag;
+    }
+
     public Optional<Tag> findTag(Long id) {
         return tagRepository.findById(id);
     }
