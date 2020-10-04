@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Note {
@@ -14,7 +15,8 @@ public class Note {
     private String content;
     @ManyToOne
     private User user;
-    @ManyToMany
+
+    @ManyToMany()
     private List<Tag> tags;
 
     public Note(String title, String content, User user, List<Tag> tags) {
@@ -62,6 +64,10 @@ public class Note {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public void removeTags(Long id) {
+        setTags(getTags().stream().filter(tag -> !tag.getId().equals(id)).collect(Collectors.toList()));
     }
 
     @Override

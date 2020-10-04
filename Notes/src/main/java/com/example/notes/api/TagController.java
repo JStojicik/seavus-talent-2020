@@ -26,8 +26,8 @@ public class TagController {
     }
 
     @PutMapping("/{tagId}")
-    public Tag updateTag(@PathVariable Long tagId,@RequestBody CreateTagRequest request){
-        return tagService.updateTag(request.name,tagId);
+    public Tag updateTag(@PathVariable Long tagId, @RequestBody CreateTagRequest request) {
+        return tagService.updateTag(request.name, tagId);
     }
 
     @GetMapping({"", "/"})
