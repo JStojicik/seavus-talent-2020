@@ -66,7 +66,7 @@ public class Note {
         this.tags = tags;
     }
 
-    public void removeTags(Long id) {
+    public void removeTag(Long id) {
         setTags(getTags().stream().filter(tag -> !tag.getId().equals(id)).collect(Collectors.toList()));
     }
 

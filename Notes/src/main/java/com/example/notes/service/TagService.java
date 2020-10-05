@@ -6,6 +6,7 @@ import com.example.notes.repository.NoteRepository;
 import com.example.notes.repository.TagRepository;
 import com.example.notes.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,8 +45,9 @@ public class TagService {
         return tagRepository.findTagsByUserId(userId);
     }
 
+    @Transactional
     public void deleteTag(Long id) {
-        noteRepository.findNotesByTagsId(id).forEach(note -> note.removeTags(id));
+        noteRepository.findNotesByTagsId(id).forEach(note -> note.removeTag(id));
         tagRepository.deleteById(id);
     }
 
