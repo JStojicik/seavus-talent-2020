@@ -39,7 +39,7 @@ public class Application {
                     .distinct()
                     .collect(Collectors.toList());
         } else {
-            return invalidList;
+            throw new IllegalArgumentException("Invalid input sorting type");
         }
     }
 }

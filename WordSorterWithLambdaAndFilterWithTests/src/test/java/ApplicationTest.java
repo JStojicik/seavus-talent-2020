@@ -42,11 +42,8 @@ class ApplicationTest {
     }
 
     @Test
-    void wordSorter_InvalidSort() {
-        List<String> actualList = new ArrayList<>();
-        actualList.add("Invalid sort type");
-        List<String> resultList = Application.wordSorter("big house", "descc", 4, 0);
-        Assertions.assertEquals(actualList, resultList);
+    void invalid_Sort() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> Application.wordSorter("big house", "descc", 4, 0));
+        Assertions.assertEquals("Invalid input sorting type", exception.getMessage());
     }
-
 }
