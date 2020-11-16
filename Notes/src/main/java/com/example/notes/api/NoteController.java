@@ -37,11 +37,7 @@ public class NoteController {
     public List<Note> findNotesByUserId() { //getAllNotes
         return noteService.findNotesByUserId(securityService.getAuthenticatedUser().getId());
     }
-<<<<<<< HEAD
-//abc
-=======
 //a
->>>>>>> parent of 164fd76... b
     @GetMapping("/tags/{id}")
     public List<Note> findNotesByTagId(@PathVariable Long id) {
         return noteService.findNotesByTagId(id);
